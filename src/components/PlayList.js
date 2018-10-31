@@ -9,6 +9,11 @@ class PlayList extends React.Component {
             id: this.props.match.params.id,
             listOfMusic: []
         };
+        this.handlePlayMusic = this.handlePlayMusic.bind(this);
+    }
+
+    handlePlayMusic(item) {
+        window.open(item.preview, '_blank');
     }
 
     componentDidMount(){
@@ -44,13 +49,20 @@ class PlayList extends React.Component {
             <div>
                 <fieldset>
                     <legend>List of music</legend>
-                    <ul>
-                        {
-                            listOfMusic.map((item, index)=>(
-                                <li key={"list-"+index}>{item.title}</li>
-                            ))
-                        }
-                    </ul>
+                    <div className="row">
+                    {
+                        listOfMusic.map((item, index)=>(
+                            <div key={"list-"+index} className="col-4">
+                                <div className="card" style={{width: '21rem', marginBottom: '2px'}}>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.title}</h5>
+                                        <audio controls src={item.preview} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                    </div>
                 </fieldset>
             </div>
         )
