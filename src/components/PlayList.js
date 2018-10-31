@@ -22,6 +22,11 @@ class PlayList extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.id !== this.props.match.params.id) {
+            this.setState({
+                listOfMusic: [{
+                    title: "Carregando..."
+                }]
+            });
             const id = parseInt(nextProps.match.params.id);
             AlbumApi.getListAlbumById(id).then((response)=>{
                 this.setState({
@@ -40,9 +45,11 @@ class PlayList extends React.Component {
                 <fieldset>
                     <legend>List of music</legend>
                     <ul>
-                        {listOfMusic.map((item, index)=>(
-                            <li key={"list-"+index}>{item}</li>
-                        ))}
+                        {
+                            listOfMusic.map((item, index)=>(
+                                <li key={"list-"+index}>{item.title}</li>
+                            ))
+                        }
                     </ul>
                 </fieldset>
             </div>

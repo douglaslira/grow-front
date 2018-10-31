@@ -29,7 +29,7 @@ class AlbumApi {
                     if(err) {
                         reject(Object.assign({}, err));
                     } else if(res.status >= 200 && res.status <= 207) {
-                        listOfAlbum = res.body.list;
+                        listOfAlbum = res.body.data;
                         resolve(listOfAlbum);
                     } else {
                         reject(listOfAlbum);
